@@ -28,6 +28,41 @@ export default class App extends Component {
     };
   }
 
+  // const midi = require("./clair_de_lune.json");
+  // console.log(midi);
+  // Tone.Transport.bpm.value = midi.header.bpm;
+  // Tone.Transport.timeSignature = midi.timeSignature;
+  // const notes = midi.tracks.reduce((a, x) => a.concat(x.notes), []);
+  // const notesOn = notes;
+  // const notesOff = notes
+  //   .map(({ name, midi, time, velocity, duration }) => ({
+  //     name,
+  //     midi,
+  //     time: time + duration,
+  //     velocity,
+  //     duration: 0,
+  //   }))
+  //   .sort((a, b) => a.time - b.time);
+  // new Tone.Part((time, event) => {
+  //   // console.log("down", time, event);
+  //   piano.keyUp(event.midi, time + 0.8);
+  //   piano.keyDown(event.midi, time + 1, event.velocity);
+  //   // this.handleHighlight([...this.state.highlight, theory.Pitch.fromProgramNumber(event.midi).get()]);
+  // }, notesOn).start();
+  // new Tone.Part((time, event) => {
+  //   // console.log("up", time, event);
+  //   piano.keyUp(event.midi, time + 1);
+  //   // console.log(this.state.highlight.map(h => h.getProgramNumber()), event.midi);
+  //   // this.handleHighlight(this.state.highlight.filter(h => h.getProgramNumber() !== event.midi));
+  // }, notesOff).start();
+  // new Tone.Part((time, event) => {
+  //   if (event.value) {
+  //     piano.pedalDown(time + 1);
+  //   } else {
+  //     piano.pedalUp(time + 1);
+  //   }
+  // }, midi.tracks[0].controlChanges[64]).start();
+
   loadPiano = () => {
     this.setState({ loading: true });
     const piano = new TonePiano({ velocities: 5 });
@@ -47,12 +82,12 @@ export default class App extends Component {
 
   pitchesDown = (pitches) => {
     const { piano } = this.state;
-    pitches.map((p) => p.getProgramNumber()).forEach((p) => piano.keyDown(p));
+    pitches.forEach((p) => piano.keyDown({ note: p.getKey() + p.getOctave() }));
   };
 
   pitchesUp = (pitches) => {
     const { piano } = this.state;
-    pitches.map((p) => p.getProgramNumber()).forEach((p) => piano.keyUp(p));
+    pitches.forEach((p) => piano.keyUp({ note: p.getKey() + p.getOctave() }));
   };
 
   play = async (previousHighlight, currentHighlight) => {
