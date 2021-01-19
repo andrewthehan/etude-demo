@@ -1,14 +1,7 @@
 import { Piano as TonePiano } from "@tonejs/piano";
 import React, { Component } from "react";
 import Piano from "react-piano";
-import {
-  Container,
-  Grid,
-  Icon,
-  Menu,
-  Message,
-  Segment,
-} from "semantic-ui-react";
+import { Container, Grid, Icon, Menu, Message } from "semantic-ui-react";
 import ChordContainer from "./ChordContainer";
 import IntervalContainer from "./IntervalContainer";
 import ScaleContainer from "./ScaleContainer";
@@ -28,47 +21,47 @@ export default class App extends Component {
     };
   }
 
-  // const midi = require("./clair_de_lune.json");
-  // console.log(midi);
-  // Tone.Transport.bpm.value = midi.header.bpm;
-  // Tone.Transport.timeSignature = midi.timeSignature;
-  // const notes = midi.tracks.reduce((a, x) => a.concat(x.notes), []);
-  // const notesOn = notes;
-  // const notesOff = notes
-  //   .map(({ name, midi, time, velocity, duration }) => ({
-  //     name,
-  //     midi,
-  //     time: time + duration,
-  //     velocity,
-  //     duration: 0,
-  //   }))
-  //   .sort((a, b) => a.time - b.time);
-  // new Tone.Part((time, event) => {
-  //   // console.log("down", time, event);
-  //   piano.keyUp(event.midi, time + 0.8);
-  //   piano.keyDown(event.midi, time + 1, event.velocity);
-  //   // this.handleHighlight([...this.state.highlight, theory.Pitch.fromProgramNumber(event.midi).get()]);
-  // }, notesOn).start();
-  // new Tone.Part((time, event) => {
-  //   // console.log("up", time, event);
-  //   piano.keyUp(event.midi, time + 1);
-  //   // console.log(this.state.highlight.map(h => h.getProgramNumber()), event.midi);
-  //   // this.handleHighlight(this.state.highlight.filter(h => h.getProgramNumber() !== event.midi));
-  // }, notesOff).start();
-  // new Tone.Part((time, event) => {
-  //   if (event.value) {
-  //     piano.pedalDown(time + 1);
-  //   } else {
-  //     piano.pedalUp(time + 1);
-  //   }
-  // }, midi.tracks[0].controlChanges[64]).start();
-
   loadPiano = () => {
     this.setState({ loading: true });
     const piano = new TonePiano({ velocities: 5 });
     piano.toDestination();
     piano.load().then(() => {
       this.setState({ piano, loading: false });
+
+      //   const midi = require("./clair_de_lune.json");
+      //   console.log(midi);
+      //   Tone.Transport.bpm.value = midi.header.bpm;
+      //   Tone.Transport.timeSignature = midi.timeSignature;
+      //   const notes = midi.tracks.reduce((a, x) => a.concat(x.notes), []);
+      //   const notesOn = notes;
+      //   const notesOff = notes
+      //     .map(({ name, midi, time, velocity, duration }) => ({
+      //       name,
+      //       midi,
+      //       time: time + duration,
+      //       velocity,
+      //       duration: 0,
+      //     }))
+      //     .sort((a, b) => a.time - b.time);
+      //   new Tone.Part((time, event) => {
+      //     // console.log("down", time, event);
+      //     piano.keyUp(event.midi, time + 0.8);
+      //     piano.keyDown(event.midi, time + 1, event.velocity);
+      //     // this.handleHighlight([...this.state.highlight, theory.Pitch.fromProgramNumber(event.midi).get()]);
+      //   }, notesOn).start();
+      //   new Tone.Part((time, event) => {
+      //     // console.log("up", time, event);
+      //     piano.keyUp(event.midi, time + 1);
+      //     // console.log(this.state.highlight.map(h => h.getProgramNumber()), event.midi);
+      //     // this.handleHighlight(this.state.highlight.filter(h => h.getProgramNumber() !== event.midi));
+      //   }, notesOff).start();
+      //   new Tone.Part((time, event) => {
+      //     if (event.value) {
+      //       piano.pedalDown(time + 1);
+      //     } else {
+      //       piano.pedalUp(time + 1);
+      //     }
+      //   }, midi.tracks[0].controlChanges[64]).start();
     });
   };
 
@@ -112,14 +105,6 @@ export default class App extends Component {
         return <ChordContainer onHighlight={this.handleHighlight} />;
       case "Scale":
         return <ScaleContainer onHighlight={this.handleHighlight} />;
-      case "Piano":
-        return (
-          <Segment attached="bottom">
-            <code>
-              const scale = new Scale(startPitch, Scale.Quality.CHROMATIC);
-            </code>
-          </Segment>
-        );
       default:
         return null;
     }
@@ -166,12 +151,6 @@ export default class App extends Component {
                 </Message>
               )}
               <Menu attached="top" tabular>
-                <Menu.Item
-                  header
-                  name="Piano"
-                  active={active === "Piano"}
-                  onClick={this.handleMenu}
-                />
                 <Menu.Item
                   name="Interval"
                   active={active === "Interval"}
