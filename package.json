@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@tonejs/piano": "^0.2.1",
     "etude": "^3.0.0-0",
     "jsmidgen": "^0.1.5",
     "midi-file-parser": "^1.0.0",
@@ -14,8 +15,8 @@
     "react-scripts": "3.0.1",
     "semantic-ui-css": "^2.2.12",
     "semantic-ui-react": "^0.87.1",
-    "tone": "^0.11.11",
-    "tone-piano": "0.0.12"
+    "tone": "^14.7.77",
+    "webmidi": "^2.5.1"
   },
   "scripts": {
     "start": "react-scripts start",
