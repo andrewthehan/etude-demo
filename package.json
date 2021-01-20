@@ -5,9 +5,6 @@
   "dependencies": {
     "@tonejs/piano": "^0.2.1",
     "etude": "^3.0.0-0",
-    "jsmidgen": "^0.1.5",
-    "midi-file-parser": "^1.0.0",
-    "midiconvert": "^0.4.2",
     "prop-types": "^15.6.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
