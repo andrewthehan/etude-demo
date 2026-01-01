@@ -9,7 +9,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-piano": "file:../react-piano/react-piano-0.1.0.tgz",
-    "react-scripts": "3.0.1",
+    "react-scripts": "5.0.1",
     "semantic-ui-css": "^2.2.12",
     "semantic-ui-react": "^0.87.1",
     "tone": "^14.7.77",
